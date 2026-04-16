@@ -27,7 +27,7 @@ In addition to the predictive model, the application provides a user-friendly in
 
 ### Filters
 <p align="center">
-  <img src="filters.jpeg" width="70%">
+  <img src="filter.jpeg" width="70%">
 </p>
 
 ### Login
