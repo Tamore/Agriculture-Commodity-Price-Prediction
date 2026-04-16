@@ -22,20 +22,20 @@ In addition to the predictive model, the application provides a user-friendly in
 
 ### Dashboard
 <p align="center">
-  <img src="dashboard.png" width="70%">
+  <img src="dashboard.jpeg" width="70%">
 </p>
 
 ### Filters
 <p align="center">
-  <img src="filters.png" width="70%">
+  <img src="filters.jpeg" width="70%">
 </p>
 
 ### Login
 <p align="center">
-  <img src="login.png" width="70%">
+  <img src="login.jpeg" width="70%">
 </p>
 
 ### Register
 <p align="center">
-  <img src="register.png" width="70%">
+  <img src="register.jpeg" width="70%">
 </p>
