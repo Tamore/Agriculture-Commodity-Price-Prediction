@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block body %}
+<style>
+  body {
+    background-image: url('static/img/green.png');
+  }
+
+  .a {
+    background-image: url('static/img/green.png');
+  }
+
+  .text-center {
+    text-align: center;
+  }
+</style>
+<div class="container">
+  <div class="card" style="margin-top: 5%;">
+    <div class="card-body">
+      <table class="table">
+        <thead> <b>Prediction Date :</b> {{ price_date }}
+          <hr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">District</th>
+            <th scope="col">Market</th>
+            <th scope="col">Commodity</th>
+            <th scope="col">Variety</th>
+            <th scope="col">Grade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>{{ district }}</td>
+            <td>{{ market }}</td>
+            <td>{{ commodity }}</td>
+            <td>{{ variety }}</td>
+            <td>{{ grade }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+
+      <div class="card w-50 mx-auto h-25">
+        <table class="table ">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Min Price</th>
+              <th scope="col">Modal Price</th>
+              <th scope="col">Max Price</th>
+            </tr>
+          </thead>
+          <tbody class="table-danger">
+            <tr>
+              <th scope="row">1</th>
+              <td>{{ prediction_min }}</td>
+              <td>{{ prediction_p }}</td>
+              <td>{{ prediction_max }}</td>
+            </tr>
+
+          </tbody>
+        </table>
+
+
+      </div>
+      <div class="text-center mt-3">
+        <a href="dashboard">
+          <button type="button" class="btn btn-success">Dashboard</button>
+        </a>
+      </div>
+      <!-- <div style="display: flex; flex-direction: row;">
+        <label style="margin-right: 10px;">Min_Price:{{ prediction_min }}</label><br><br>
+        <label style="margin-right: 10px;">Max_Price:{{ prediction_max }}</label><br>
+        <label style="margin-right: 10px;">Modal_Price:{{ prediction_p }}</label>
+      </div> -->
+    </div>
+  </div>
+</div>
+{% endblock body %}

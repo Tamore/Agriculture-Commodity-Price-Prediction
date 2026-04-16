@@ -1,0 +1,494 @@
+{% extends "base.html" %}
+
+{% block body %}
+<style>
+    .a {
+        background-image: url('static/img/green.png');
+
+    }
+
+    .form-control {
+        padding: 10px;
+        background-size: cover;
+    }
+    #myVideo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -1;
+    }
+</style>
+<div>
+    <video autoplay muted loop id="myVideo">
+        <source src="/static/images/v2.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="form_container" style="max-width: 600px; margin-top:15%;">
+                <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
+                    <div class="card-body">
+                        <h2>Select Filters</h2>
+                        <form action="pre" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form_container">
+                                        <label for="district">District:</label>
+                                        <select class="form-control" id="district" name="district" required>
+                                            <option value="">Select District</option>
+                                            <option value="Ahmednagar">Ahmednagar</option>
+                                            <option value="Amrawati(Frui & Veg. Market)">Amrawati(Frui & Veg. Market)
+                                            </option>
+                                            <option value="Davangere">Davangere</option>
+                                            <option value="Dhar">Dhar</option>
+                                            <option value="Dindori">Dindori</option>
+                                            <option value="Gajapati">Gajapati</option>
+                                            <option value="Gariyaband">Gariyaband</option>
+                                            <option value="Hyderabad">Hyderabad</option>
+                                            <option value="Hassan">Hassan</option>
+                                            <option value="Idukki">Idukki</option>
+                                            <option value="Jalgaon">Jalgaon</option>
+                                            <option value="Jashpur">Jashpur</option>
+                                            <option value="Katni">Katni</option>
+                                            <option value="Khammam">Khammam</option>
+                                            <option value="Kolhapur">Kolhapur</option>
+                                            <option value="Koraput">Koraput</option>
+                                            <option value="Koraput">Kondagaon</option>
+                                            <option value="Koraput">Kanker</option>
+                                            <option value="Longleng">Longleng</option>
+                                            <option value="Mahendragarh-Narnaul">Mahendragarh-Narnaul</option>
+                                            <option value="Mandla">Mandla</option>
+                                            <option value="Mumbai">Mumbai</option>
+                                            <option value="Mewat">Mewat</option>
+                                            <option value="Meerut">Meerut</option>
+                                            <option value="Mysore">Mysore</option>
+                                            <option value="Madhubani">Madhubani</option>
+                                            <option value="Muzaffarnagar">Muzaffarnagar</option>
+                                            <option value="Muzaffarnagar">Mandsaur</option>
+                                            <option value="Nagpur">Nagpur</option>
+                                            <option value="Nashik">Nashik</option>
+                                            <option value="Narayanpur">Narayanpur</option>
+                                            <option value="Patan">Patan</option>
+                                            <option value="Porbandar">Porbandar</option>
+                                            <option value="Pune">Pune</option>
+                                            <option value="Satara">Satara</option>
+                                            <option value="Sagar">Sagar</option>
+                                            <option value="Shimla">Shimla</option>
+                                            <option value="Sangli">Sangli</option>
+                                            <option value="Sholapur">Sholapur</option>
+                                            <option value="Surguja">Surguja</option>
+                                            <option value="Sukma">Sukma</option>
+                                            <option value="Ujjain">Ujjain</option>
+                                            <option value="Anand">Anand</option>
+                                            <option value="Amarawati">Amarawati</option>
+                                            <option value="Amreli">Amreli</option>
+                                            <option value="Aurangabad">Aurangabad</option>
+                                            <option value="Banaskanth">Banaskanth</option>
+                                            <option value="Bangalore">Bangalore</option>
+                                            <option value="Bhopal">Bhopal</option>
+                                            <option value="Chandrapur">Chandrapur</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="market">Market:</label>
+                                        <select class="form-control" id="market" name="market" required>
+                                            <option value="">Select Market</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="commodity">Commodity:</label>
+                                        <select class="form-control" id="commodity" name="commodity" required>
+                                            <option value="">Select Commodity</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="variety">Variety:</label>
+                                        <select class="form-control" id="variety" name="variety" required>
+                                            <option value="">Select Variety</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="grade">Grade:</label>
+                                        <select class="form-control" id="grade" name="grade" required>
+                                            <option value="">Select Grade</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="price_date">Price Date:</label>
+                                        <input type="date" class="form-control" id="price_date" name="price_date"
+                                            min="<?= date('Y-m-d', strtotime('+1 day')) ?>" required>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary mt-5 w-100"
+                                        style="background-color: rgb(60, 169, 6); border-color:rgb(60, 169, 6)">Apply
+                                        Filters</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+            
+        </div>
+        </div>
+        </div>
+        <!-- Include Bootstrap JS (optional if you're not using other Bootstrap features) -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <script>
+            // Function to populate the second dropdown based on the selection in the first dropdown
+            function populateMarkets() {
+                var districtSelect = document.getElementById("district");
+                var marketSelect = document.getElementById("market");
+                var selectedDistrict = districtSelect.value;
+
+                // Clear existing options in the market dropdown
+                marketSelect.innerHTML = "";
+
+                // Add default option
+                var defaultOption = document.createElement("option");
+                defaultOption.text = "Select Market";
+                marketSelect.add(defaultOption);
+
+                // Define markets for each district
+                var markets = {
+
+                    'Ahmednagar': ["Ahmednagar", "Rahata", "Shrirampur"],
+                    'Davangere': ["Davangere"],
+                    'Dhar': ["Manawar"],
+                    'Gajapati': ["Parlakhemundi"],
+                    'Gariyaband': ["Devbhog"],
+                    'Hyderabad': ["Gaddiannaram"],
+                    'Idukki': ["Munnar"],
+                    'Shimla': ["Shimla"],
+                    'Sholapur': ["Solapur"],
+                    'Bhopal': ["Bhopal(F&V)"],
+                    'Amreli': ["Rajula"],
+                    'Dindori': ["Dindori"],
+                    'Hassan': ["Belur"],
+                    'Kanker': ["Lakhanpuri"],
+                    'Narayanpur': ["Narayanpur"],
+                    'Banaskanth': ["Vadgam", "Amirgadh"],
+                    'Bangalore': ["Binny Mill (F&V), Bangalore"],
+                    'Patan': ["Siddhpur"],
+                    'Porbandar': ["Porbandar"],
+                    'Sukma': ["Konta"],
+                    'Mewat': ["Taura"],
+                    'Kondagaon': ["Kondagoan"],
+                    'Anand': ["Tarapur"],
+                    'Ujjain': ["Ujjain(F&V)"],
+                    'Sagar': ["Sagar(F&V)"],
+                    'Amarawati': ["Amrawati(Frui & Veg. Market)"],
+                    'Nagpur': ["Ramtek"],
+                    'Chandrapur': ["Chandrapur(Ganjwad)"],
+                    'Jalgaon': ["Jalgaon"],
+                    'Aurangabad': ["Aurangabad","Masur Dal"],
+                    'Sangli': ["Aatpadi", "Sangli(Phale, Bhajipura Market)"],
+                    'Koraput': ["Koraput", "Koraput(Semilguda)"],
+                    'Kolhapur': ["Vadgaonpeth"],
+                    'Katni': ["Katni(F&V)"],
+                    'Jashpur': ["Jaspur", "Pathalgaon"],
+                    'Khammam': ["Khammam", "Sattupalli"],
+                    'Longleng': ["Longleng"],
+                    'Satara': ["Patan"],
+                    'Mahendragarh-Narnaul': ["Narnaul"],
+                    'Mandla': ["Mandla"],
+                    'Madhubani': ["Jainagar","Jainagar"],
+                    'Mandsaur': ["Sitmau"],
+                    'Pune': ["Pune(Pimpri)"],
+                    'Meerut': ["Parikshitgarh"],
+                    'Mysore': ["Mysore (Bandipalya)"],
+                    'Muzaffarnagar': ["Khatauli"],
+                    'Nashik': ["Nasik"],
+                    'Mumbai': ["Mumbai", "Fruit Market"],
+
+                };
+
+                // Populate the market dropdown based on the selected district
+                if (selectedDistrict in markets) {
+                    var districtMarkets = markets[selectedDistrict];
+                    for (var i = 0; i < districtMarkets.length; i++) {
+                        var option = document.createElement("option");
+                        option.text = districtMarkets[i];
+                        marketSelect.add(option);
+                    }
+                }
+            }
+
+            // Add event listener to the district dropdown to call the populateMarkets function when the selection changes
+            document.getElementById("district").addEventListener("change", populateMarkets);
+            // Function to populate the commodity dropdown based on the selection in the district dropdown
+            function populateCommodities() {
+                var districtSelect = document.getElementById("district");
+                var commoditySelect = document.getElementById("commodity");
+                var selectedDistrict = districtSelect.value;
+
+                // Clear existing options in the commodity dropdown
+                commoditySelect.innerHTML = "";
+
+                // Add default option
+                var defaultOption = document.createElement("option");
+                defaultOption.text = "Select Commodity";
+                commoditySelect.add(defaultOption);
+
+                // Define commodities for each district
+                var var_commodity = {
+                    'Ahmednagar': ["Seetapal"],
+                    'Kondagaon': ["Antawala"],
+                    'Anand': ["Beans"],
+                    'Mysore': ["Seetapal"],
+                    'Kanker': ["Antawala"],
+                    'Bangalore': ["Seetapal"],
+                    'Nagpur': ["Seetapal"],
+                    'Bhopal': ["Seetapal"],
+                    'Narayanpur': ["Antawala"],
+                    'Dindori': ["Antawala"],
+                    'Hassan': ["Antawala"],
+                    'Davangere': ["Seetapal"],
+                    'Sholapur': ["Seetapal", "Rajgir"],
+                    'Sangli': ["Seetapal"],
+                    'Porbandar': ["Seetapal"],
+                    'Gaya': ["Methi(Leaves)"],
+                    'Chandrapur': ["Seetapal"],
+                    'Gariyaband': ["Amla(Nelli Kai)"],
+                    'Ujjain': ["Seetapal"],
+                    'Sagar': ["Seetapal"],
+                    'Aurangabad': ["Seetapal","Kala Masoor New ","Methi(Leaves)"],
+                    'Amarawati': ["Seetapal"],
+                    'Dhar': ["Rajgir"],
+                    'Banaskanth': ["Rajgir"],
+                    'Patan': ["Rajgir"],
+                    'Pune': ["Rajgir"],
+                    'Satara': ["Rajgir"],
+                    'Surguja': ["Beans"],
+                    'Sukma': ["Antawala"],
+                    'Anand': ["Rajgir"],
+                    'Amreli': ["Rajgir"],
+                    'Gajapati': ["Seetapal"],
+                    'Hyderabad': ["Seetapal"],
+                    'Idukki': ["Seetapal","Amla(Nelli Kai)"],
+                    'Koraput': ["Seetapal"],
+                    'Jalgaon': ["Seetapal"],
+                    'Muzaffarnagar': ["Seetapal"],
+                    'Meerut': ["Seetapal"],
+                    'Mahendragarh-Narnaul': ["Seetapal"],
+                    'Mandsaur': ["Masur Dal"],
+                    'Jashpur': ["Bamboo"],
+                    'Khammam': ["Bamboo"],
+                    'Longleng': ["Bamboo"],
+                    'Katni': ["Seetapal"],
+                    'Nashik': ["Seetapal"],
+                    'Kolhapur': ["Seetapal"],
+                    'Mandla': ["Rajgir"],
+                    'Mumbai': ["Almond(badam)", "Seetapal"],
+                    'Madhubani': ["Amla(Nelli Kai)"],
+                    'Mewat': ["Almond(badam)"],
+                    'Shimla': ["Almond(badam)"],
+                };
+
+                // Populate the commodity dropdown based on the selected district
+                if (selectedDistrict in var_commodity) {
+                    var districtCommodities = var_commodity[selectedDistrict];
+                    for (var i = 0; i < districtCommodities.length; i++) {
+                        var option = document.createElement("option");
+                        option.text = districtCommodities[i];
+                        commoditySelect.add(option);
+                    }
+                }
+            }
+
+            // Add event listener to the district dropdown to call the populateCommodities function when the selection changes
+            document.getElementById("district").addEventListener("change", populateCommodities);
+
+            // Function to populate the variety dropdown based on the selection in the district dropdown
+            function populateVarieties() {
+                var districtSelect = document.getElementById("district");
+                var varietySelect = document.getElementById("variety");
+                var selectedDistrict = districtSelect.value;
+
+                // Clear existing options in the variety dropdown
+                varietySelect.innerHTML = "";
+
+                // Add default option
+                var defaultOption = document.createElement("option");
+                defaultOption.text = "Select Variety";
+                varietySelect.add(defaultOption);
+
+                // Define varieties for each district
+                var varieties = {
+                    'Ahmednagar': ["Other"],
+                    'Mumbai': ["Other"],
+                    'Banaskanth': ["Other"],
+                    'Meerut': ["Other"],
+                    'Amreli': ["Other"],
+                    'Pune': ["Other"],
+                    'Amarawati': ["Other"],
+                    'Anand': ["Other"],
+                    'Sangli': ["Other"],
+                    'Chandrapur': ["Other"],
+                    'Gaya': ["Methi"],
+                    'Sholapur': ["Other"],
+                    'Sagar': ["Other"],
+                    'Bhopal': ["Other"],
+                    'Porbandar': ["Other"],
+                    'Patan': ["Other"],
+                    'Satara': ["Other"],
+                    'Surguja': ["Beans (Whole)","Other"],
+                    'Davangere': ["Seethaphal"],
+                    'Bangalore': ["Seethaphal"],
+                    'Ujjain': ["Other", "Seethaphal"],
+                    'Aurangabad': ["Other", "Seethaphal"],
+                    'Mysore': ["Seethaphal"],
+                    'Mahendragarh-Narnaul': ["Seethaphal"],
+                    'Nagpur': ["Other"],
+                    'Dhar': ["Other"],
+                    'Idukki': ["Other"],
+                    'Gajapati': ["Other"],
+                    'Gariyaband': ["Other"],
+                    'Jalgaon': ["Other"],
+                    'Katni': ["Other"],
+                    'Mandla': ["Other"],
+                    'Madhubani': ["Amla"],
+                    'Mandsaur': ["Kala Masoor New "],
+                    'Nashik': ["Other"],
+                    'Kolhapur': ["Other"],
+                    'Dindori': ["Antawala"],
+                    'Koraput': ["Other"],
+                    'Hassan': ["Antawala"],
+                    'Kondagaon': ["Antawala"],
+                    'Sukman': ["Other"],
+                    'Kanker': ["Other"],
+                    'Muzaffarnagar': ["Other"],
+                    'Narayanpur': ["Other"],
+                    'Hyderabad': ["Seethaphal"],
+                    'Jashpur': ["Bamboo"],
+                    'Khammam': ["Bamboo"],
+                    'Longleng': ["Bamboo"],
+                    'Mewat': ["Almond(Badam)"],
+                    'Shimla': ["Almond(Badam)"],
+                };
+
+                // Populate the variety dropdown based on the selected district
+                if (selectedDistrict in varieties) {
+                    var districtVarieties = varieties[selectedDistrict];
+                    for (var i = 0; i < districtVarieties.length; i++) {
+                        var option = document.createElement("option");
+                        option.text = districtVarieties[i];
+                        varietySelect.add(option);
+                    }
+                }
+            }
+
+            // Add event listener to the district dropdown to call the populateVarieties function when the selection changes
+            document.getElementById("district").addEventListener("change", populateVarieties);
+
+
+            // Function to populate the grade dropdown based on the selection in the district dropdown
+            function populateGrades() {
+                var districtSelect = document.getElementById("district");
+                var gradeSelect = document.getElementById("grade");
+                var selectedDistrict = districtSelect.value;
+
+                // Clear existing options in the grade dropdown
+                gradeSelect.innerHTML = "";
+
+                // Add default option
+                var defaultOption = document.createElement("option");
+                defaultOption.text = "Select Grade";
+                gradeSelect.add(defaultOption);
+
+                // Define grades for each district
+                var var_grade = {
+                    'Ahmednagar': ["FAQ"],
+                    'Anand': ["FAQ"],
+                    'Davangere': ["FAQ"],
+                    'Sangli': ["FAQ"],
+                    'Satara': ["FAQ"],
+                    'Jashpur': ["FAQ"],
+                    'Bangalore': ["FAQ"],
+                    'Mysore': ["FAQ"],
+                    'Mandsaur': ["FAQ"],
+                    'Madhubani': ["FAQ"],
+                    'Chandrapur': ["FAQ"],
+                    'Amarawati': ["FAQ"],
+                    'Sholapur': ["FAQ"],
+                    'Surguja': ["FAQ"],
+                    'Anand': ["FAQ"],
+                    'Amreli': ["FAQ"],
+                    'Jalgaon': ["FAQ"],
+                    'Banaskanth': ["FAQ"],
+                    'Khammam': ["FAQ"],
+                    'Shimla': ["FAQ"],
+                    'Dhar': ["FAQ"],
+                    'Kondagaon': ["FAQ"],
+                    'Sukma': ["FAQ"],
+                    'Kanker': ["FAQ"],
+                    'Narayanpur': ["FAQ"],
+                    'Hassan': ["FAQ"],
+                    'Dindori': ["FAQ"],
+                    'Nashik': ["FAQ"],
+                    'Pune': ["FAQ"],
+                    'Patan': ["FAQ"],
+                    'Nagpur': ["FAQ"],
+                    'Kolhapur': ["FAQ"],
+                    'Mandla': ["FAQ"],
+                    'Longleng': ["FAQ"],
+                    'Mewat': ["FAQ"],
+                    'Mumbai': ["FAQ"],
+                    'Gajapati': ["Small"],
+                    'Koraput': ["Small", "Medium"],
+                    'Aurangabad': ["Small", "Medium", "FAQ"],
+                    'Ujjain': ["Large", "Medium"],
+                    'Hyderabad': ["Medium"],
+                    'Sagar': ["Medium"],
+                    'Bhopal': ["Medium"],
+                    'Meerut': ["Medium"],
+                    'Idukki': ["Medium"],
+                    'Katni': ["Medium"],
+                    'Mahendragarh-Narnaul': ["Medium"],
+                    'Muzaffarnagar': ["Medium"],
+                    'Porbandar': ["Large"],
+                    'Kondagoan': ["Large","FAQ"],
+                };
+
+                // Populate the grade dropdown based on the selected district
+                if (selectedDistrict in var_grade) {
+                    var districtGrades = var_grade[selectedDistrict];
+                    for (var i = 0; i < districtGrades.length; i++) {
+                        var option = document.createElement("option");
+                        option.text = districtGrades[i];
+                        gradeSelect.add(option);
+                    }
+                }
+            }
+
+            // Add event listener to the district dropdown to call the populateGrades function when the selection changes
+            document.getElementById("district").addEventListener("change", populateGrades);
+
+        </script>
+
+        {% endblock body %}
